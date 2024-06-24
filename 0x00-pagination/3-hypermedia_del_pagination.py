@@ -16,7 +16,6 @@ class Server:
     def __init__(self):
         self.__dataset = None
         self.__indexed_dataset = None
-        self.__max_key = None
 
     def dataset(self) -> List[List]:
         """Cached dataset
@@ -38,8 +37,6 @@ class Server:
             self.__indexed_dataset = {
                 i: dataset[i] for i in range(len(dataset))
             }
-            assert isinstance(self.__indexed_dataset, dict)
-            self.__max_key = max(self.__indexed_dataset.keys())
         return self.__indexed_dataset
 
     def get_hyper_index(
@@ -64,14 +61,13 @@ class Server:
         """
         dataset = self.indexed_dataset()
 
-        assert isinstance(index, int) and 0 <= index < len(dataset)
-        assert isinstance(self.__max_key, int)
+        assert isinstance(index, int) and 0 <= index < len(self.dataset())
         assert isinstance(page_size, int) and page_size > 0
 
         count = 0
         cursor = index
         names = []
-        while count < page_size and cursor <= self.__max_key:
+        while count < page_size and cursor < len(self.dataset()):
             if cursor in dataset:
                 names.append(dataset[cursor])
                 count += 1
