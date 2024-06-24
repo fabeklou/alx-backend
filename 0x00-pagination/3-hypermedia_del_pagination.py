@@ -43,7 +43,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(
-        self, index: Optional[int] = None, page_size: int = 10
+        self, index: Optional[int] = 0, page_size: int = 10
             ) -> Dict:
         """
         Retrieves a hypermedia index from the dataset.
@@ -63,8 +63,10 @@ class Server:
 
         """
         dataset = self.indexed_dataset()
+
         assert isinstance(index, int) and 0 <= index < len(dataset)
         assert isinstance(self.__max_key, int)
+
         count = 0
         cursor = index
         names = []
