@@ -66,6 +66,7 @@ class Server:
 
         assert isinstance(index, int) and 0 <= index < len(dataset)
         assert isinstance(self.__max_key, int)
+        assert isinstance(page_size, int) and page_size > 0
 
         count = 0
         cursor = index
