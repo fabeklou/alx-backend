@@ -27,4 +27,5 @@ def home() -> str:
 
 
 if __name__ == '__main__':
+    """Run flask app if module is main"""
     app.run(debug=True)
