@@ -12,9 +12,6 @@ from typing import List
 from flask import Flask, render_template
 from flask_babel import Babel
 
-app = Flask(__name__)
-babel = Babel(app)
-
 
 class Config:
     """
@@ -27,11 +24,13 @@ class Config:
     """
 
     LANGUAGES: List[str] = ['en', 'fr']
-    DEFAULT_LOCALE: str = 'en'
-    DEFAULT_TIMEZONE: str = 'UTC'
+    BABEL_DEFAULT_LOCALE: str = 'en'
+    BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
 
+app = Flask(__name__)
 app.config.from_object(Config)
+babel = Babel(app)
 
 
 @app.route('/')
