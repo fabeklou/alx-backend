@@ -23,7 +23,7 @@ def home() -> str:
         The rendered template.
     """
     title: str = 'Hello world'
-    return render_template('0-index.html', title=title)
+    return render_template('0-index.html')
 
 
 if __name__ == '__main__':
