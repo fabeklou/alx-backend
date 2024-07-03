@@ -96,7 +96,7 @@ def get_locale() -> Union[str, None]:
         lokl = g.user.get('locale', None)
         if lokl in app.config['LANGUAGES']:
             return lokl
-    
+
     # Locale from request header
     lokl = request.headers.get('locale', None)
     if lokl in app.config['LANGUAGES']:
