@@ -1,6 +1,6 @@
-const express = require('express');
-const redis = require('redis');
-const { promisify } = require('util');
+import redis from 'redis';
+import { promisify } from 'util';
+import express from 'express';
 
 const app = express();
 const port = 1245;
@@ -57,7 +57,7 @@ app.get('/list_products/:itemId', async (req, res) => {
 });
 
 app.get('/reserve_product/:itemId', async (req, res) => {
-  const itemId = req.params.itemId;
+  const { itemId } = req.params;
   const item = getItemById(itemId);
 
   if (!item) {
